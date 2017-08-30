@@ -4,17 +4,20 @@ import './Track.css';
 class Track extends Component {
    constructor(props) {
         super(props);
-        this.state = {
-            tag: "+"
-        }
-        this.renderAction = this.renderAction.bind(this);
+        
+        this.addTrack = this.addTrack.bind(this);
+        this.removeTrack = this.addTrack.bind(this);
    }
     renderAction(e) {
-        e.preventDefault();
-        let tag;
-        this.state.tag === '+' ? tag = this.setState({ tag: '-'}) : tag = this.setState({ tag: '+'});  
-                      
-        return tag;
+        
+    }
+
+    addTrack() {
+        return this.props.onAdd(this.props.track);
+    }
+
+    removeTrack() {
+        return this.props.onRemove(this.props.track)
     }
     
     render() {
@@ -24,7 +27,7 @@ class Track extends Component {
                     <h3>{this.props.track.name}</h3>
                     <p>{this.props.track.artist} | {this.props.track.album}</p>
                 </div>
-                <a className="Track-action" onClick={this.renderAction}>{this.state.tag}</a>
+                <a className="Track-action" onClick={this.addTrack}>+</a>
             </div>
         );
     }

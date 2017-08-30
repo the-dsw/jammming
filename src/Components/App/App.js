@@ -14,8 +14,29 @@ class App extends Component {
         { id: "2", name: "Tiny Dancer", artist: "Rockabye Baby!", album: "Lullaby Renditions of Elton John" }, 
         { id: "3", name: "Tiny Dancer", artist: "The White Raven", album: "Tiny Dancer" }, 
         { id: "4", name: "Tiny Dancer", artist: "Ben Folds", album: "Ben Folds Live" } 
+      ],
+      playlistName: 'Play List Name',
+      playlistTracks: [
+        { id: '5', name: 'Stronger', artist: 'Britney Spears', album: 'Oops!... I Did It Again'},
+        { id: '9', name: 'So Emotional', artist: 'Whitney Houston', album: 'Whitney'},
+        { id: '7', name: 'It\'s Not Right But It\'s Okay', artist: 'Whitney Houston', album: 'My Love Is Your Love'},
       ] 
     };
+
+    this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
+  }
+
+  addTrack(track) {
+    if(track === this.state.playlistTracks.id) {
+      console.log('Exist !!!!!')
+    } else {
+      this.setState({
+        id: track.id, name: track.name, artist: track.artist, album: track.album
+      })
+    }
+  }
+  removeTrack(track) {
 
   }
 
@@ -26,8 +47,8 @@ class App extends Component {
         <div className="App">
           <SearchBar />
           <div className="App-playlist">
-            <SearchResults searchResults={this.state.searchResults} />
-            <PlayList />
+            <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
+            <PlayList onRemove={this.removeTrack} playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
           </div>
         </div>
       </div>
