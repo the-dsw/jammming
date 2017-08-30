@@ -4,16 +4,17 @@ import Track from '../Track/Track';
 
 class TrackList extends Component {
   render() {
-    
     return (
         <div className="TrackList">
-          {this.props.tracks.map((track) => {
+          {(typeof this.props.tracks !== 'undefined') ? this.props.tracks.map((track) => {
             console.log(track)
-            return <Track key={track.id} track={track} />
-          })}
+            return <Track key={track.id} track={track}  />
+          }): ''}
         </div>
     );
   }
 }
 
 export default TrackList;
+
+
